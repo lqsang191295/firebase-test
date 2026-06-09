@@ -43,6 +43,7 @@ next-env.d.ts
 *.json
 !package.json
 !package-lock.json
+!tsconfig.json
 
 firebase-adminsdk*.json
 service-account*.json
