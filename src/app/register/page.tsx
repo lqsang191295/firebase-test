@@ -1,5 +1,3 @@
-"use client";
-
 import { requestFcmToken } from "@/lib/firebase-client";
 import {
   CheckCircle2,
@@ -95,9 +93,7 @@ export default function RegisterPage() {
       setStatus("loading");
       setErrorDetail("");
 
-      setMessage(
-        "Trình duyệt sắp hiển thị yêu cầu cấp quyền thông báo...",
-      );
+      setMessage("Trình duyệt sắp hiển thị yêu cầu cấp quyền thông báo...");
 
       console.log("=== START REGISTER ===");
 
@@ -145,10 +141,7 @@ export default function RegisterPage() {
       setDeviceName(data.device?.name || mobileData.name);
 
       if (data.device?.id) {
-        localStorage.setItem(
-          "fcm-device-id",
-          data.device.id,
-        );
+        localStorage.setItem("fcm-device-id", data.device.id);
       }
 
       setMessage(
@@ -158,9 +151,7 @@ export default function RegisterPage() {
       console.error(error);
 
       const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Đăng ký thất bại.";
+        error instanceof Error ? error.message : "Đăng ký thất bại.";
 
       setStatus("error");
       setMessage(errorMessage);
@@ -173,29 +164,19 @@ export default function RegisterPage() {
           "",
           `URL: ${window.location.href}`,
           "",
-          `Secure Context: ${
-            window.isSecureContext ? "Có" : "Không"
-          }`,
+          `Secure Context: ${window.isSecureContext ? "Có" : "Không"}`,
           "",
-          `Notification API: ${
-            "Notification" in window ? "Có" : "Không"
-          }`,
+          `Notification API: ${"Notification" in window ? "Có" : "Không"}`,
           "",
           `Permission: ${
-            "Notification" in window
-              ? Notification.permission
-              : "N/A"
+            "Notification" in window ? Notification.permission : "N/A"
           }`,
           "",
-          `Service Worker: ${
-            "serviceWorker" in navigator ? "Có" : "Không"
-          }`,
+          `Service Worker: ${"serviceWorker" in navigator ? "Có" : "Không"}`,
           "",
           `Standalone/PWA: ${
-            window.matchMedia("(display-mode: standalone)")
-              .matches ||
-            (navigator as NavigatorWithUserAgentData)
-              .standalone === true
+            window.matchMedia("(display-mode: standalone)").matches ||
+            (navigator as NavigatorWithUserAgentData).standalone === true
               ? "Có"
               : "Không"
           }`,
@@ -219,8 +200,7 @@ export default function RegisterPage() {
           </h1>
 
           <p className="mt-2 text-sm text-muted-foreground">
-            Cho phép trình duyệt lưu thiết bị này để
-            admin có thể gửi FCM.
+            Cho phép trình duyệt lưu thiết bị này để admin có thể gửi FCM.
           </p>
         </div>
 
@@ -229,8 +209,8 @@ export default function RegisterPage() {
             <ShieldCheck className="mt-0.5 size-5" />
 
             <p className="text-sm text-muted-foreground">
-              Khi nhấn nút bên dưới, trình duyệt sẽ
-              yêu cầu quyền thông báo và lưu FCM token.
+              Khi nhấn nút bên dưới, trình duyệt sẽ yêu cầu quyền thông báo và
+              lưu FCM token.
             </p>
           </div>
 
@@ -241,8 +221,7 @@ export default function RegisterPage() {
             className="mt-5 flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 text-base font-semibold text-primary-foreground disabled:opacity-70"
             style={{
               touchAction: "manipulation",
-            }}
-          >
+            }}>
             {status === "loading" ? (
               <Loader2 className="animate-spin" />
             ) : status === "success" ? (
@@ -251,14 +230,11 @@ export default function RegisterPage() {
               <MessageCircle />
             )}
 
-            {status === "loading"
-              ? "Đang xử lý..."
-              : "Cho phép thông báo"}
+            {status === "loading" ? "Đang xử lý..." : "Cho phép thông báo"}
           </button>
 
           <p className="mt-2 text-center text-xs text-muted-foreground">
-            JS: {clientReady ? "Ready" : "Loading"} |
-            Click: {tapCount}
+            JS: {clientReady ? "Ready" : "Loading"} | Click: {tapCount}
           </p>
 
           <div
@@ -266,10 +242,9 @@ export default function RegisterPage() {
               status === "error"
                 ? "bg-destructive/10 text-destructive"
                 : status === "success"
-                ? "bg-emerald-50 text-emerald-700"
-                : "bg-muted text-muted-foreground"
-            }`}
-          >
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "bg-muted text-muted-foreground"
+            }`}>
             {message}
           </div>
 
