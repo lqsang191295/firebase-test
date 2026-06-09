@@ -1,5 +1,3 @@
-"use client";
-
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -68,10 +66,13 @@ export async function requestFcmToken() {
   const registration = await navigator.serviceWorker.register(
     "/firebase-messaging-sw.js",
   );
-  const token = await firebaseMessaging.getToken(firebaseMessaging.getMessaging(app), {
-    vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
-    serviceWorkerRegistration: registration,
-  });
+  const token = await firebaseMessaging.getToken(
+    firebaseMessaging.getMessaging(app),
+    {
+      vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
+      serviceWorkerRegistration: registration,
+    },
+  );
 
   if (!token) {
     throw new Error("Khong lay duoc FCM token.");
