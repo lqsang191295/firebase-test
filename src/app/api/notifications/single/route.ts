@@ -1,5 +1,5 @@
 import { addNotificationLog, getDevice } from "@/lib/db-excel";
-import { sendFcmToTokens } from "@/lib/firebase-admin";
+import { sendFcmToTokens } from "../../../../lib/firebase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,7 +51,10 @@ export async function POST(request: Request) {
           .join("; "),
       });
     } catch (error) {
-      logError = error instanceof Error ? error.message : "Cannot save notification log.";
+      logError =
+        error instanceof Error
+          ? error.message
+          : "Cannot save notification log.";
     }
 
     return Response.json({
@@ -62,7 +65,10 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return Response.json(
-      { error: error instanceof Error ? error.message : "Cannot send notification." },
+      {
+        error:
+          error instanceof Error ? error.message : "Cannot send notification.",
+      },
       { status: 500 },
     );
   }

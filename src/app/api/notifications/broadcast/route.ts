@@ -1,5 +1,5 @@
 import { addNotificationLog, listActiveDevices } from "@/lib/db-excel";
-import { sendFcmToTokens } from "@/lib/firebase-admin";
+import { sendFcmToTokens } from "../../../../lib/firebase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +13,10 @@ export async function POST(request: Request) {
     };
 
     if (!body.title || !body.message) {
-      return Response.json({ error: "Title and message are required." }, { status: 400 });
+      return Response.json(
+        { error: "Title and message are required." },
+        { status: 400 },
+      );
     }
 
     const devices = listActiveDevices();
@@ -39,7 +42,10 @@ export async function POST(request: Request) {
           .join("; "),
       });
     } catch (error) {
-      logError = error instanceof Error ? error.message : "Cannot save notification log.";
+      logError =
+        error instanceof Error
+          ? error.message
+          : "Cannot save notification log.";
     }
 
     return Response.json({
@@ -51,7 +57,10 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return Response.json(
-      { error: error instanceof Error ? error.message : "Cannot send broadcast." },
+      {
+        error:
+          error instanceof Error ? error.message : "Cannot send broadcast.",
+      },
       { status: 500 },
     );
   }

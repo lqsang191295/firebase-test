@@ -1,4 +1,3 @@
-import { requestFcmToken } from "@/lib/firebase-client";
 import {
   CheckCircle2,
   Loader2,
@@ -7,6 +6,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { requestFcmToken } from "../../lib/firebase-client";
 
 type Status = "idle" | "loading" | "success" | "error";
 
