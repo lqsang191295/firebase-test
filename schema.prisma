@@ -1,0 +1,25 @@
+// Schema tham chieu cho cau truc du lieu luu trong data.xlsx.
+// Ung dung hien tai khong dung Prisma runtime.
+
+model Device {
+  id         String   @id
+  token      String   @unique
+  name       String
+  userAgent  String
+  active     Boolean  @default(true)
+  createdAt  DateTime
+  updatedAt  DateTime
+  lastSeenAt DateTime
+}
+
+model NotificationLog {
+  id           String   @id
+  target       String
+  deviceId     String
+  title        String
+  body         String
+  successCount Int
+  failureCount Int
+  error        String
+  createdAt    DateTime
+}
