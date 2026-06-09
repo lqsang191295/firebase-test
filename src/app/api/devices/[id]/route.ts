@@ -1,4 +1,8 @@
-import { deleteDevice, getDevice, updateDevice } from "@/lib/db-excel";
+import {
+  deleteDevice,
+  getDevice,
+  updateDevice,
+} from "../../../../lib/db-excel";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,7 +50,9 @@ export async function PATCH(
     return Response.json({ device });
   } catch (error) {
     return Response.json(
-      { error: error instanceof Error ? error.message : "Cannot update device." },
+      {
+        error: error instanceof Error ? error.message : "Cannot update device.",
+      },
       { status: 500 },
     );
   }
@@ -67,7 +73,9 @@ export async function DELETE(
     return Response.json({ ok: true });
   } catch (error) {
     return Response.json(
-      { error: error instanceof Error ? error.message : "Cannot delete device." },
+      {
+        error: error instanceof Error ? error.message : "Cannot delete device.",
+      },
       { status: 500 },
     );
   }

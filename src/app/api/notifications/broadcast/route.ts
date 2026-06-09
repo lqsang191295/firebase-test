@@ -1,4 +1,7 @@
-import { addNotificationLog, listActiveDevices } from "@/lib/db-excel";
+import {
+  addNotificationLog,
+  listActiveDevices,
+} from "../../../../lib/db-excel";
 import { sendFcmToTokens } from "../../../../lib/firebase-admin";
 
 export const runtime = "nodejs";

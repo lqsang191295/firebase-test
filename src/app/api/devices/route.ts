@@ -1,4 +1,4 @@
-import { listDevices, upsertDevice } from "@/lib/db-excel";
+import { listDevices, upsertDevice } from "../../../lib/db-excel";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,7 +8,9 @@ export async function GET() {
     return Response.json({ devices: listDevices() });
   } catch (error) {
     return Response.json(
-      { error: error instanceof Error ? error.message : "Cannot load devices." },
+      {
+        error: error instanceof Error ? error.message : "Cannot load devices.",
+      },
       { status: 500 },
     );
   }
